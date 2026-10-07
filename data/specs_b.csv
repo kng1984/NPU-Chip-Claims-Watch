@@ -1,0 +1,8 @@
+vendor,chip,cpu,cpu_cores,gpu,npu_tops_int8,npu_tops_fp16,mem_type,mem_bandwidth_gbps,process_nm,source_url,notes
+Hailo,Hailo-8,,,,26,,,,,https://raw.githubusercontent.com/raspberrypi/documentation/master/documentation/asciidoc/accessories/ai-hat-plus/about.adoc,"peak; Raspberry Pi AI HAT+ doc: Hailo-8 (26 TOPS, INT8)"
+Hailo,Hailo-8L,,,,13,,,,,https://raw.githubusercontent.com/raspberrypi/documentation/master/documentation/asciidoc/accessories/ai-hat-plus/about.adoc,"peak; Raspberry Pi AI HAT+ doc: Hailo-8L (13 TOPS, INT8)"
+Hailo,Hailo-10H,,,,,,,,,https://raw.githubusercontent.com/raspberrypi/documentation/master/documentation/asciidoc/accessories/ai-hat-plus/about.adoc,doc states 40 TOPS at INT4 (not INT8; int8 left empty); AI HAT+ 2 has 8 GB onboard memory (type not stated)
+D-Robotics (Horizon Robotics),RDK X5,A55 @ 1.5GHz,8,32 GFlops,,,LPDDR4,,,https://raw.githubusercontent.com/datawhalechina/every-embodied/main/03-机器人硬件、lerobot及地瓜RDK-X5开发板控制教程/01RDKX5超新手入门教程.md,"BPU 10 TOPS peak (precision not stated, so int8 left empty); RAM 4GB/8GB; third-party tutorial on GitHub, rdk_doc hardware page has no spec table"
+D-Robotics (Horizon Robotics),RDK X3,,,,,,,,,,no spec page fetched
+Huawei Ascend,Ascend 310P3,,,,,,,,,https://raw.githubusercontent.com/ggml-org/llama.cpp/master/docs/backend/CANN.md,llama.cpp CANN doc lists Atlas 300I Duo (310P chip) but no TOPS/memory specs
+Huawei Ascend,Ascend 310B1,,,,,,,,,,no spec page fetched
