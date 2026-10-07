@@ -1,0 +1,30 @@
+vendor,chip,cpu,cpu_cores,gpu,npu_tops_int8,npu_tops_fp16,mem_type,mem_bandwidth_gbps,process_nm,source_url,notes
+Axera,AX615,,,,,,,,,,no source fetched
+Axera,AX620Q,,,,,,,,,,no source fetched
+Axera,AX630C,,,,,,,,,,no source fetched
+Axera,AX637/AX8910,,,,,,,,,,no source fetched
+Axera,AX650,,,,,,,,,,no source fetched
+Axera,AX650/AX8850,Cortex-A55 (up to 1.5GHz),8,,24,,LPDDR4X,,,https://raw.githubusercontent.com/radxa-docs/docs/main/docs/aicore/ax-m1/README.md,Source covers AX8850 only (Radxa AX-M1 module); AX650 not covered by page; 24 TOPS INT8 is vendor peak; memory up to 8GB; bandwidth and process not stated
+D-Robotics (Horizon Robotics),RDK X3,,,,,,,,,,no source fetched
+D-Robotics (Horizon Robotics),RDK X5,,,,,,,,,,no source fetched
+Hailo,Hailo-10H,,,,,,,,,,no source fetched
+Hailo,Hailo-8,,,,,,,,,,no source fetched
+Hailo,Hailo-8L,,,,,,,,,,no source fetched
+Huawei Ascend,Ascend 310B1,,,,,,,,,,no source fetched
+Huawei Ascend,Ascend 310P3,,,,,,,,,,no source fetched
+Rockchip,RK1808,,,,,,,,,,no source fetched
+Rockchip,RK3562,,,,,,,,,,no source fetched
+Rockchip,RK3566/RK3568,,,,,,,,,,Variants RK3566 vs RK3568 differ; no source fetched
+Rockchip,RK3576,,,,,,,,,,no source fetched
+Rockchip,RK3588,Cortex-A76 (up to 2.4GHz) + Cortex-A55 (up to 1.8GHz),8,Mali-G610 MP4,6,,LPDDR4X (ROCK 5B) / LPDDR5 (ROCK 5B+),,,https://raw.githubusercontent.com/radxa-docs/docs/main/docs/rock5/rock5b/getting-started/introduction.md,Source is Radxa ROCK 5B/5B+ doc (4xA76+4xA55); 6 TOPS is vendor peak figure (page says up to 6TOPs; INT4/INT8/INT16/FP16/BF16/TF32 supported; not stated whether tri-core combined); INT8 column assumes the peak figure is INT8 (page does not label precision); bandwidth and process not stated on page
+Rockchip,RV1109,,,,,,,,,,no source fetched
+Rockchip,RV1126,,,,,,,,,,no source fetched
+Rockchip,RV1126B,,,,,,,,,,no source fetched
+Sophgo,BM1684,,,,,,,,,,SE5 module maps to BM1684; no source fetched
+Sophgo,BM1684X,,,,,,,,,,"SE7 module maps to BM1684X; Radxa SG2300X page (32 TOPS INT8, 16 TFLOPS FP16, 8xA53 2.3GHz) not confirmed as BM1684X so not used"
+Sophgo,BM1688,,,,,,,,,,no source fetched
+Sophgo,CV186X,,,,,,,,,,no source fetched
+Sophgo,CV84X6,,,,,,,,,,no source fetched
+Sophgo,SC7-224T,,,,,,,,,,no source fetched
+Sophgo,SC7-HP75,,,,,,,,,,no source fetched
+Sophgo,SRM1-20,,,,,,,,,,no source fetched

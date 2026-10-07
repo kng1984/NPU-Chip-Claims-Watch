@@ -30,3 +30,9 @@
 - Axera:精度未标注;ax-llm 仅 1 次示例运行。
 - Ascend:未标注精度,个别表格无单位(按 fps 假定,见 notes);无 910/910B 与 LLM 数据。
 - 未覆盖 NXP eIQ、Google Coral、Amlogic、MediaTek。
+
+## 排名
+
+- `data/chip_specs.csv`:芯片规格(CPU、NPU TOPS、内存带宽)。目前只有 RK3588 和 AX650/AX8850 有来源数据,其余为空——规格站点(rock-chips.com、hailo.ai、qualcomm.com、intel.com、d-robotics.cc、docs.radxa.com、wikipedia 等)被网络策略拦截,未从记忆填充。
+- `rank.py` → `RANKING.md`:按模型 × 精度排 FPS,并在有规格时给出 FPS/TOPS 与 FPS/(GB/s)。带宽效率榜现在基本为空,等规格补全后重新运行 `python3 -I rank.py` 即可。
+- 注意:精度未标注的数据归在 `n/a` 组,可能混有不同批大小(如 Hailo 为批 8/批 1),排名为粗略参考。
