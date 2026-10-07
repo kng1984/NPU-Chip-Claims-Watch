@@ -1,7 +1,12 @@
 """Rank chips per (model, precision) by FPS; add FPS/TOPS and FPS/(GB/s) when chip_specs.csv has the figures."""
 import csv, glob, re, collections
 
-specs = {(r['vendor'], r['chip']): r for r in csv.DictReader(open('data/chip_specs.csv'))}
+specs = {}
+for f in ['data/chip_specs.csv', 'data/specs_a.csv', 'data/specs_b.csv']:  # first non-empty value wins
+    for r in csv.DictReader(open(f)):
+        cur = specs.setdefault((r['vendor'], r['chip']), dict(r))
+        for k, v in r.items():
+            if v and not cur.get(k): cur[k] = v
 def num(s):
     try: return float(s)
     except (TypeError, ValueError): return None

@@ -36,3 +36,9 @@
 - `data/chip_specs.csv`:芯片规格(CPU、NPU TOPS、内存带宽)。目前只有 RK3588 和 AX650/AX8850 有来源数据,其余为空——规格站点(rock-chips.com、hailo.ai、qualcomm.com、intel.com、d-robotics.cc、docs.radxa.com、wikipedia 等)被网络策略拦截,未从记忆填充。
 - `rank.py` → `RANKING.md`:按模型 × 精度排 FPS,并在有规格时给出 FPS/TOPS 与 FPS/(GB/s)。带宽效率榜现在基本为空,等规格补全后重新运行 `python3 -I rank.py` 即可。
 - 注意:精度未标注的数据归在 `n/a` 组,可能混有不同批大小(如 Hailo 为批 8/批 1),排名为粗略参考。
+
+## 补充数据(第二轮,仅来自 GitHub)
+
+- `data/specs_a.csv`、`data/specs_b.csv`:从 GitHub 文档仓库收集的规格,`rank.py` 会与 `chip_specs.csv` 合并(先出现的非空值优先)。仍缺:所有芯片的制程/FP16 基本为空;带宽只有 RK3576(22)、RK3588(44)、AX650/AX8850(34.1)三个,均为按板卡/模组位宽×速率算出的理论峰值;Sophgo 的 BM1684/BM1684X/BM1688 TOPS 来自 sophon-tools 代码注释,可信度较弱;RV1126、RK3588 等未标精度的 NPU 算力放在 notes,未计入 INT8 列。
+- `data/community.csv`、`qualcomm.csv`、`intel.csv`、`cambricon.csv`、`huawei_ascend_910.csv`:社区/第三方 GitHub 实测,**未与原页面逐条核对**,含近似值与区间,硬件口径不一,**不参与 `RANKING.md`**。
+- 仍无法访问论坛与规格站点(知乎、Reddit、CNX、Radxa 论坛、厂商官网、Qualcomm AI Hub、HuggingFace),需在环境网络设置中放开后才能补齐。
