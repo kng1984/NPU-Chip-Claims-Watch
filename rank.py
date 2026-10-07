@@ -8,7 +8,7 @@ def num(s):
 
 groups = collections.defaultdict(list)
 for f in sorted(glob.glob('data/*.csv')):
-    if f.endswith('chip_specs.csv'): continue
+    if f.endswith('chip_specs.csv') or 'specs_' in f or f.endswith('community.csv'): continue
     for r in csv.DictReader(open(f)):
         if r['metric'] != 'fps': continue
         key = (re.sub(r'[^a-z0-9]', '', r['model'].lower()), r['precision'] or 'n/a')
