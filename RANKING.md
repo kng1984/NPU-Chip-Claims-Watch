@@ -10,7 +10,7 @@ FPS/TOPS、FPS/(GB/s) 仅在 `data/chip_specs.csv` 有对应规格时给出，�
 |---|---|---|---|---|---|---|---|---|
 | 1 | Hailo | Hailo-8 | 543 | 26.0 |  | 20.88 |  | [link](https://raw.githubusercontent.com/hailo-ai/hailo_model_zoo/master/docs/public_models/HAILO8/HAILO8_object_detection.rst) |
 | 2 | Axera | AX650/AX8850 | 384.62 | 24.0 | 34.128 | 16.03 | 11.27 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX650_AX8850.md) |
-| 3 | Hailo | Hailo-10H | 296 | 40.0 |  | 7.4 |  | [link](https://raw.githubusercontent.com/hailo-ai/hailo_model_zoo/master/docs/public_models/HAILO10H/HAILO10H_object_detection.rst) |
+| 3 | Hailo | Hailo-10H | 296 | 20.0 |  | 14.8 |  | [link](https://raw.githubusercontent.com/hailo-ai/hailo_model_zoo/master/docs/public_models/HAILO10H/HAILO10H_object_detection.rst) |
 | 4 | Hailo | Hailo-8L | 243 | 13.0 |  | 18.69 |  | [link](https://raw.githubusercontent.com/hailo-ai/hailo_model_zoo/master/docs/public_models/HAILO8L/HAILO8L_object_detection.rst) |
 | 5 | Axera | AX637/AX8910 | 141 |  |  |  |  | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX637_AX8910.md) |
 | 6 | Axera | AX630C | 78.7 | 3.2 |  | 24.59 |  | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX630C.md) |
@@ -23,7 +23,7 @@ FPS/TOPS、FPS/(GB/s) 仅在 `data/chip_specs.csv` 有对应规格时给出，�
 |---|---|---|---|---|---|---|---|---|
 | 1 | Hailo | Hailo-8 | 491 | 26.0 |  | 18.88 |  | [link](https://raw.githubusercontent.com/hailo-ai/hailo_model_zoo/master/docs/public_models/HAILO8/HAILO8_object_detection.rst) |
 | 2 | Axera | AX650/AX8850 | 281.77 | 24.0 | 34.128 | 11.74 | 8.26 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX650_AX8850.md) |
-| 3 | Hailo | Hailo-10H | 252 | 40.0 |  | 6.3 |  | [link](https://raw.githubusercontent.com/hailo-ai/hailo_model_zoo/master/docs/public_models/HAILO10H/HAILO10H_object_detection.rst) |
+| 3 | Hailo | Hailo-10H | 252 | 20.0 |  | 12.6 |  | [link](https://raw.githubusercontent.com/hailo-ai/hailo_model_zoo/master/docs/public_models/HAILO10H/HAILO10H_object_detection.rst) |
 | 4 | Hailo | Hailo-8L | 208 | 13.0 |  | 16.0 |  | [link](https://raw.githubusercontent.com/hailo-ai/hailo_model_zoo/master/docs/public_models/HAILO8L/HAILO8L_object_detection.rst) |
 | 5 | Axera | AX637/AX8910 | 88 |  |  |  |  | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX637_AX8910.md) |
 | 6 | Axera | AX630C | 59.13 | 3.2 |  | 18.48 |  | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX630C.md) |

@@ -2,7 +2,7 @@
 import csv, glob, re, collections
 
 specs = {}
-for f in ['data/chip_specs.csv', 'data/specs_a.csv', 'data/specs_b.csv']:  # first non-empty value wins
+for f in ['data/specs_f.csv', 'data/chip_specs.csv', 'data/specs_a.csv', 'data/specs_b.csv']:  # first non-empty value wins
     for r in csv.DictReader(open(f)):
         cur = specs.setdefault((r['vendor'], r['chip']), dict(r))
         for k, v in r.items():
@@ -13,7 +13,7 @@ def num(s):
 
 groups = collections.defaultdict(list)
 for f in sorted(glob.glob('data/*.csv')):
-    if f.endswith('chip_specs.csv') or 'specs_' in f or f.endswith('community.csv'): continue
+    if f.endswith('chip_specs.csv') or 'specs_' in f or f.endswith('community.csv') or 'web_' in f: continue
     for r in csv.DictReader(open(f)):
         if r['metric'] != 'fps': continue
         key = (re.sub(r'[^a-z0-9]', '', r['model'].lower()), r['precision'] or 'n/a')
