@@ -30,8 +30,8 @@ def spec_for(v, c):
 
 # ---------- model ops ----------
 ops = collections.defaultdict(list)
-OPS_ROWS = list(csv.DictReader(open('data/model_ops.csv')))
-ALIAS = {'yolov5s': 'yolov5shailoyolov5s', 'resnet50v27': 'resnet50', 'mobilenetv212': 'mobilenetv2', 'resnetv150': 'resnet50',
+OPS_ROWS = list(csv.DictReader(open('data/ref/model_ops.csv')))
+ALIAS = {'swint': 'swint', 'deitt': 'deittiny', 'deits': 'deitsmall', 'deitb': 'deitbase', 'vitb': 'vitb16', 'fastvitt8': 'fastvitt8', 'yolov5s': 'yolov5shailoyolov5s', 'resnet50v27': 'resnet50', 'mobilenetv212': 'mobilenetv2', 'resnetv150': 'resnet50',
          'swintiny': 'swint', 'swinsmall': 'swins', 'swinbase': 'swinb', 'vit': 'vitb16', 'squeezenet11': 'squeezenet11',
          'resnet50hailoresnetv150': 'resnet50'}
 for r in OPS_ROWS:
@@ -79,6 +79,7 @@ for f in sorted(glob.glob('data/*.csv')):
         n = r['notes'].lower()
         if any(w in n for w in ('concurrent', 'end-to-end', 'pipeline', 'outlier', 'not npu-only', 'synthetic')): continue
         if 'compute unit' in n and 'compute unit npu' not in n: continue
+        if r['vendor'] == 'Hailo' and cls(r) == 'official': continue
         if r['vendor'] == 'Qualcomm' and norm(r['model']) in ('yolov7',): continue  # AI Hub variant unclear
         m = match_ops(r['model'], edge(r['input_size']))
         v = num(r['value'])
@@ -91,7 +92,24 @@ for f in sorted(glob.glob('data/*.csv')):
         if peak and eff > 1.3 * peak:
             dropped.append((r['vendor'], chip, r['model'], round(eff, 1), peak)); continue  # implausible: model mismatch / op-count convention
         obs.append(dict(vendor=r['vendor'], chip=chip, model=m['model'], fam=m['family'], scen=scenario(m['model'], m['task'], m['family']),
-                        fps=fps, eff=eff, peak=peak, bw=num(s.get('mem_bandwidth_gbps')), cls=cls(r), url=r['source_url'], derived=r['metric'] == 'latency_ms'))
+                        fps=fps, eff=eff, gops=float(m['gops']), peak=peak, bw=num(s.get('mem_bandwidth_gbps')), cls=cls(r), url=r['source_url'], derived=r['metric'] == 'latency_ms'))
+
+
+# ---------- Hailo: use the model-zoo table's own FPS (batch 1) and OPS ----------
+HZ_URL = 'https://github.com/hailo-ai/hailo_model_zoo/tree/master/docs/public_models'
+for r in csv.DictReader(open('data/ref/hailo_zoo_table.csv')):
+    try: fps = float(r['fps_b1']); gops = float(r['ops_g'])
+    except ValueError: continue
+    name = r['network']
+    fam = 'Transformer' if re.search(r'vit|deit|swin|davit|cas_vit', name) else 'CNN'
+    sc = scenario(name, r['task'], fam) if fam == 'CNN' else 'Transformer'
+    if r['task'] == 'classification' and fam == 'CNN': sc = '图像分类'
+    s = spec_for('Hailo', r['chip'])
+    peak = num(s.get('npu_tops_int8'))
+    eff = fps * gops / 1000
+    if peak and eff > 1.3 * peak: continue
+    obs.append(dict(vendor='Hailo', chip=r['chip'], model=name, fam=fam, scen=sc, fps=fps, eff=eff, gops=gops, peak=peak, bw=None, cls='official',
+                    url=f'{HZ_URL}/{r["chip"].replace("-", "").upper()}', derived=False))
 
 def agg(rows, key=lambda o: (o['vendor'], o['chip'], o['cls'])):
     g = collections.defaultdict(dict)  # (chip) -> model -> best eff
@@ -103,24 +121,27 @@ def agg(rows, key=lambda o: (o['vendor'], o['chip'], o['cls'])):
     res = []
     for k, ms in g.items():
         e = [x['eff'] for x in ms.values()]
+        h = [x['eff'] for x in ms.values() if x['gops'] >= 5]  # compute-heavy models (>=5 GOPs) fill the array better
         o = meta[k]
-        res.append(dict(key=k, n=len(e), lo=min(e), med=statistics.median(e), hi=max(e), peak=o['peak'], bw=o['bw'],
-                        util=(statistics.median(e) / o['peak']) if o['peak'] else None, models=sorted(ms)))
-    return sorted(res, key=lambda r: -r['med'])
+        hm = statistics.median(h) if h else None
+        res.append(dict(key=k, n=len(e), nh=len(h), lo=min(e), med=statistics.median(e), hmed=hm, hi=max(e), peak=o['peak'], bw=o['bw'],
+                        util=(hm / o['peak']) if (hm and o['peak']) else None, models=sorted(ms)))
+    return sorted(res, key=lambda r: -(r['hmed'] if r['hmed'] is not None else 0))
 
 def fmt_table(res, min_n=1):
-    L = ['| # | 厂商 | 芯片 | 类别 | 样本数 | 等效 TOPS 中位 | 区间(最低–最高) | 标称 TOPS | 利用率(中位/标称) | 带宽 GB/s | 等效TOPS/(GB/s) |', '|---|---|---|---|---|---|---|---|---|---|---|']
+    L = ['| # | 厂商 | 芯片 | 类别 | 样本数(重模型) | 重模型等效 TOPS 中位 | 全部模型中位 | 区间(最低–最高) | 标称 TOPS | 利用率(重模型中位/标称) | 带宽 GB/s | 重模型等效TOPS/(GB/s) |', '|---|---|---|---|---|---|---|---|---|---|---|---|']
     i = 0
     for r in res:
         if r['n'] < min_n: continue
         i += 1
         v, c, k = r['key']
-        L.append(f'| {i} | {v} | {c} | {"官方" if k=="official" else "社区"} | {r["n"]}{"(样本少)" if r["n"]<3 else ""} | {r["med"]:.2f} | {r["lo"]:.2f}–{r["hi"]:.2f} | {r["peak"] or ""} | {f"{r["util"]*100:.0f}%" if r["util"] else ""} | {r["bw"] or ""} | {f"{r["med"]/r["bw"]:.3f}" if r["bw"] else ""} |')
+        hm = r['hmed']
+        L.append(f'| {i} | {v} | {c} | {"官方" if k=="official" else "社区"} | {r["n"]}({r["nh"]}){"(样本少)" if r["nh"]<2 else ""} | {f"{hm:.2f}" if hm is not None else "—"} | {r["med"]:.2f} | {r["lo"]:.2f}–{r["hi"]:.2f} | {r["peak"] or ""} | {f"{r["util"]*100:.0f}%" if r["util"] else ""} | {r["bw"] or ""} | {f"{hm/r["bw"]:.3f}" if (hm and r["bw"]) else ""} |')
     return L
 
 out = ['# 等效算力排名(按真实性能折算)\n',
-       '等效 TOPS = 实测 FPS × 单次推理 GOPs(`data/model_ops.csv`,GOPs=2×MACs) ÷ 1000。只用 INT8 类精度(或来源未标精度)、批大小 1、仅 NPU 推理的行;延迟按 1000/ms 换算。',
-       '利用率 = 等效 TOPS 中位数 ÷ 标称 INT8 TOPS(标称算力缺失则为空)。区间 = 该芯片在所列模型上的最低到最高等效 TOPS。样本数 <3 的行请谨慎对待。',
+       '等效 TOPS = 实测 FPS × 单次推理 GOPs(`data/ref/model_ops.csv`,GOPs=2×MACs) ÷ 1000。只用 INT8 类精度(或来源未标精度)、批大小 1、仅 NPU 推理的行;延迟按 1000/ms 换算。',
+       '排名依据「重模型中位」:只取单次推理 ≥5 GOPs 的模型(小模型喂不满阵列,且各芯片测试的模型集合不同,直接取全部模型中位会偏向只测小模型的芯片)。利用率 = 重模型中位 ÷ 标称 INT8 TOPS(标称缺失则为空)。区间 = 该芯片所有模型的最低到最高。括号内为重模型数,<2 视为样本少。',
        '注意:各家 GOPs 口径(2×MAC)统一,但模型变体(如 YOLOv5s 的 Hailo 版与 Ultralytics 版)、算子是否在 NPU 上全部执行、是否含前后处理仍可能不同。\n']
 out += ['## 一、CNN 总榜(检测+分类+分割+人脸+姿态)\n'] + fmt_table(agg([o for o in obs if o['fam'] == 'CNN'])) + ['']
 tr = [o for o in obs if o['fam'] in ('Transformer', 'Hybrid')]
