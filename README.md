@@ -50,3 +50,9 @@
 - `data/web_forum_en.csv`:Hailo 官方 model zoo(批 1)与 Coral 延迟。
 - 规格新增 `specs_d.csv`(Sophgo/Axera/RDK)、`specs_e.csv`(Hailo/昇腾/寒武纪/骁龙/Intel)、`specs_f.csv`(带页面依据的更正,合并时优先)。已知冲突记录在各行 notes:AX650 的 INT8 算力(10.8 vs 18)、AX8850(24)与 AX650N 不是同一颗芯片、昇腾 310P3 为第三方整卡数据折半。
 - 中文论坛(知乎/CSDN/Radxa 论坛)实测尚未收集:子 agent 的 WebFetch 无法解析域名、curl 被权限分类器拦截;Rockchip 规格(RK3562/RK3566/RV11xx 等)也因此未补。
+
+## 第四轮:全志与此芯
+
+- `data/allwinner.csv`(26 行):Radxa 文档中 T527 / A733(Vivante VIP9000)的 YOLO、RetinaFace、CLIP 推理 FPS,仅推理、不含前后处理。
+- `data/cix.csv`(4 行):此芯 P1(CD8180)的社区实测——合成卷积模型 277 FPS(约 20.1 TOPS 实效)、BiSeNet 10.7 ms、4000×4000 矩阵乘 343 ms。NPU 为安谋科技"周易"IP;SDK 需申请,标准模型公开成绩很少。45 TOPS 为 CPU+GPU+NPU 合计,NPU 单独约 30(Radxa 文档称 28.8,未核实)。
+- 新增规格 `specs_g.csv`(Cix P1、全志 V853/T527)、`specs_h.csv`(RK3566/68、RK3562、RV1109,来源 CNX;与 `specs_a` 的算力存在冲突,见 notes)。
