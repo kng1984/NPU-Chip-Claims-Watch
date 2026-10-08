@@ -9,7 +9,7 @@ FPS/TOPS、FPS/(GB/s) 仅在 `data/chip_specs.csv` 有对应规格时给出，�
 | # | 厂商 | 芯片 | FPS | NPU TOPS(INT8) | 带宽 GB/s | FPS/TOPS | FPS/(GB/s) | 来源 |
 |---|---|---|---|---|---|---|---|---|
 | 1 | Hailo | Hailo-8 | 543 | 26.0 |  | 20.88 |  | [link](https://raw.githubusercontent.com/hailo-ai/hailo_model_zoo/master/docs/public_models/HAILO8/HAILO8_object_detection.rst) |
-| 2 | Axera | AX650/AX8850 | 384.62 | 24.0 | 34.128 | 16.03 | 11.27 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX650_AX8850.md) |
+| 2 | Axera | AX650/AX8850 | 384.62 | 24.0 | 34.1 | 16.03 | 11.28 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX650_AX8850.md) |
 | 3 | Hailo | Hailo-10H | 296 | 20.0 |  | 14.8 |  | [link](https://raw.githubusercontent.com/hailo-ai/hailo_model_zoo/master/docs/public_models/HAILO10H/HAILO10H_object_detection.rst) |
 | 4 | Hailo | Hailo-8L | 243 | 13.0 |  | 18.69 |  | [link](https://raw.githubusercontent.com/hailo-ai/hailo_model_zoo/master/docs/public_models/HAILO8L/HAILO8L_object_detection.rst) |
 | 5 | Axera | AX637/AX8910 | 141 |  |  |  |  | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX637_AX8910.md) |
@@ -22,7 +22,7 @@ FPS/TOPS、FPS/(GB/s) 仅在 `data/chip_specs.csv` 有对应规格时给出，�
 | # | 厂商 | 芯片 | FPS | NPU TOPS(INT8) | 带宽 GB/s | FPS/TOPS | FPS/(GB/s) | 来源 |
 |---|---|---|---|---|---|---|---|---|
 | 1 | Hailo | Hailo-8 | 491 | 26.0 |  | 18.88 |  | [link](https://raw.githubusercontent.com/hailo-ai/hailo_model_zoo/master/docs/public_models/HAILO8/HAILO8_object_detection.rst) |
-| 2 | Axera | AX650/AX8850 | 281.77 | 24.0 | 34.128 | 11.74 | 8.26 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX650_AX8850.md) |
+| 2 | Axera | AX650/AX8850 | 281.77 | 24.0 | 34.1 | 11.74 | 8.26 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX650_AX8850.md) |
 | 3 | Hailo | Hailo-10H | 252 | 20.0 |  | 12.6 |  | [link](https://raw.githubusercontent.com/hailo-ai/hailo_model_zoo/master/docs/public_models/HAILO10H/HAILO10H_object_detection.rst) |
 | 4 | Hailo | Hailo-8L | 208 | 13.0 |  | 16.0 |  | [link](https://raw.githubusercontent.com/hailo-ai/hailo_model_zoo/master/docs/public_models/HAILO8L/HAILO8L_object_detection.rst) |
 | 5 | Axera | AX637/AX8910 | 88 |  |  |  |  | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX637_AX8910.md) |
@@ -466,7 +466,7 @@ FPS/TOPS、FPS/(GB/s) 仅在 `data/chip_specs.csv` 有对应规格时给出，�
 
 | # | 厂商 | 芯片 | FPS | NPU TOPS(INT8) | 带宽 GB/s | FPS/TOPS | FPS/(GB/s) | 来源 |
 |---|---|---|---|---|---|---|---|---|
-| 1 | Axera | AX650/AX8850 | 3546.1 | 24.0 | 34.128 | 147.75 | 103.91 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX650_AX8850.md) |
+| 1 | Axera | AX650/AX8850 | 3546.1 | 24.0 | 34.1 | 147.75 | 103.99 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX650_AX8850.md) |
 | 2 | Axera | AX637/AX8910 | 1111 |  |  |  |  | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX637_AX8910.md) |
 | 3 | Axera | AX630C | 1083.42 | 3.2 |  | 338.57 |  | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX630C.md) |
 | 4 | Axera | AX620Q | 816.33 | 2.4 |  | 340.14 |  | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX620Q.md) |
@@ -476,7 +476,7 @@ FPS/TOPS、FPS/(GB/s) 仅在 `data/chip_specs.csv` 有对应规格时给出，�
 
 | # | 厂商 | 芯片 | FPS | NPU TOPS(INT8) | 带宽 GB/s | FPS/TOPS | FPS/(GB/s) | 来源 |
 |---|---|---|---|---|---|---|---|---|
-| 1 | Axera | AX650/AX8850 | 749.06 | 24.0 | 34.128 | 31.21 | 21.95 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX650_AX8850.md) |
+| 1 | Axera | AX650/AX8850 | 749.06 | 24.0 | 34.1 | 31.21 | 21.97 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX650_AX8850.md) |
 | 2 | Axera | AX637/AX8910 | 292 |  |  |  |  | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX637_AX8910.md) |
 | 3 | Axera | AX630C | 178.06 | 3.2 |  | 55.64 |  | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX630C.md) |
 | 4 | Axera | AX620Q | 132.05 | 2.4 |  | 55.02 |  | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX620Q.md) |

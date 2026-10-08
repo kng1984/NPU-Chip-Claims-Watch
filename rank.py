@@ -2,7 +2,7 @@
 import csv, glob, re, collections
 
 specs = {}
-for f in ['data/specs_f.csv', 'data/chip_specs.csv', 'data/specs_a.csv', 'data/specs_b.csv']:  # first non-empty value wins
+for f in ['data/specs_f.csv', 'data/specs_d.csv', 'data/chip_specs.csv', 'data/specs_a.csv', 'data/specs_b.csv']:  # first non-empty value wins
     for r in csv.DictReader(open(f)):
         cur = specs.setdefault((r['vendor'], r['chip']), dict(r))
         for k, v in r.items():
