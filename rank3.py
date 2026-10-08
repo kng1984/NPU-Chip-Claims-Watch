@@ -12,7 +12,7 @@ def edge(s):
 
 # ---------- specs (first non-empty wins) ----------
 specs = {}
-for f in ['specs_i', 'specs_g', 'specs_f', 'specs_h', 'specs_d', 'specs_e', 'chip_specs', 'specs_a', 'specs_b']:
+for f in ['specs_i', 'specs_j', 'specs_g', 'specs_f', 'specs_h', 'specs_d', 'specs_e', 'chip_specs', 'specs_a', 'specs_b']:
     p = f'data/{f}.csv'
     if not os.path.exists(p): continue
     for r in csv.DictReader(open(p)):

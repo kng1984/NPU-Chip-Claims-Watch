@@ -87,3 +87,9 @@
 - `data/ref/hailo_zoo_table.csv`:Hailo Model Zoo 官方表(Hailo-8/8L/10H,215 行:批 1/批 8 FPS、输入、参数量、OPS(G)),包含 DeiT / DaViT / CAS-ViT / FastViT 等 Transformer 类模型;`rank3.py` 直接用其自带 OPS 与批 1 FPS 折算等效算力(OPS 口径已用 Ultralytics 等交叉核对为 2×MAC)。
 - `data/model_ops.csv` 与 `hailo_zoo_table.csv` 现位于 `data/ref/`(参考表,不参与 `rank.py` 的 glob)。
 - `RANKING_EFFECTIVE.md` 改为按「重模型(≥5 GOPs)等效 TOPS 中位」排序,避免只测小模型的芯片被高估/低估;Transformer 视觉榜现包含 Axera(Swin-T/DeiT-T/ViT-B)与 Hailo(23 个 ViT 类模型)。
+
+## 带宽补全(第二次)
+
+- `data/specs_j.csv`:骁龙 8 Gen 3(76.8)/8 Elite(84.8)/X Elite(135 GB/s)来自 Wikipedia 的 SoC 表;RK3576 为 19.2 GB/s(Wikipedia,未见位宽与速率,未核实,与早先按板卡估的 22 冲突,现取 19.2);RK3566/68、RK1808、Hailo-10H、Lunar Lake 只有接口位宽/类型,无带宽。
+- 修正:Cix P1 的带宽按 128-bit × 5500 MT/s 推算为 88 GB/s(CNX 文中写 100 GB/s 与自身位宽×速率不符)。
+- 仍无带宽:Sophgo 全系、Axera 全系、地平线 RDK X3/X5、RK3562/RV1126/RV1109/RV1126B、全志 T527/A733、昇腾 310B/310P、Coral、Apple A18 Pro、Core Ultra 7 155H(厂商官网多被代理拦截,PDF 链接失效)。
