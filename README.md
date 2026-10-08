@@ -73,3 +73,11 @@
 
 - `rank2.py` → `RANKING_LIKE_FOR_LIKE.md`:YOLOv5s、YOLOv8n(640×640)、ResNet50、MobileNetV2(224×224),仅取 INT8 类精度(或未标精度)、批大小 1、仅 NPU 推理的数据;延迟换算为 FPS(†);官方与社区分列;规格表有数据时给出 FPS/TOPS 与 FPS/(GB/s)。
 - 与 `RANKING.md`(宽口径)的区别:前者剔除了批大小>1、端到端流水线、多路并发和离群值。仍需注意:各家软件栈不同,Qualcomm/Apple 等手机 SoC 数据是厂商云端设备实测的纯 NPU 延迟,与开发板数据口径并不完全相同。
+
+## 等效算力排名(`rank3.py` → `RANKING_EFFECTIVE.md`)
+
+- **等效 TOPS** = 实测 FPS × 单次推理 GOPs ÷ 1000(GOPs 来自 `data/model_ops.csv`,统一为 2×MAC);按芯片给出中位数、最低–最高区间,以及相对标称 INT8 算力的利用率。只用 INT8 类精度、批大小 1、仅 NPU 推理的数据;等效算力超过标称 1.3 倍的折算(模型错配)已剔除。
+- 分类:CNN 总榜、Transformer 视觉模型(样本很少,目前仅 Qualcomm)、应用场景(目标检测 / 图像分类 / 分割 / 人脸 / 姿态)。
+- **端侧大模型**:等效内存吞吐 = tokens/s × 参数量 × 位宽/8,与理论带宽对比得到带宽利用率;另有同尺寸(≈0.5B/1.5B/3–9B,4/8bit)tokens/s 榜。VLM(名称参数含视觉塔)、MoE、超出理论带宽的行已剔除。
+- 新增数据:`web_transformer.csv`(Axera/Rockchip/Hailo/Sophgo 的 LLM/VLM/ViT 等)、`specs_i.csv`(带宽补全:RK3588 实际板级配置为 34.1/38.4 GB/s,与早先的 44 GB/s 冲突,排名取 34.1)。
+- 局限:带宽仍缺大量芯片(RK3576 的 22 GB/s 未核实,Sophgo/Axera 多数、Hailo-10H、RDK、昇腾、Cix 等为空);Transformer 视觉与 OCR/语音类缺少对应的 GOPs,无法折算;Qualcomm 手机 SoC 的标称 INT8 TOPS 未公布,利用率为空。
