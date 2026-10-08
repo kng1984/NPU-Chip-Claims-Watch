@@ -1,14 +1,15 @@
 """Like-for-like leaderboards: same model, same input size, INT8-class precision, batch 1, NPU inference only.
 Latency rows are converted to FPS (1000/ms, marked †). Efficiency columns use data/specs_*.csv + chip_specs.csv."""
-import csv, glob, re, collections
+import csv, glob, re, os, collections
 
 def num(s):
     try: return float(s)
     except (TypeError, ValueError): return None
 
 specs = {}
-for f in ['data/specs_g.csv', 'data/specs_f.csv', 'data/specs_h.csv', 'data/specs_d.csv', 'data/specs_e.csv',
+for f in ['data/specs_g.csv', 'data/specs_f.csv', 'data/specs_h.csv', 'data/specs_d.csv', 'data/specs_e.csv', 'data/specs_j.csv', 'data/specs_k.csv', 'data/specs_l.csv', 'data/specs_m.csv',
           'data/chip_specs.csv', 'data/specs_a.csv', 'data/specs_b.csv']:  # first non-empty value wins
+    if not os.path.exists(f): continue
     for r in csv.DictReader(open(f)):
         cur = specs.setdefault((r['vendor'], r['chip']), dict(r))
         for k, v in r.items():

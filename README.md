@@ -93,3 +93,8 @@
 - `data/specs_j.csv`:骁龙 8 Gen 3(76.8)/8 Elite(84.8)/X Elite(135 GB/s)来自 Wikipedia 的 SoC 表;RK3576 为 19.2 GB/s(Wikipedia,未见位宽与速率,未核实,与早先按板卡估的 22 冲突,现取 19.2);RK3566/68、RK1808、Hailo-10H、Lunar Lake 只有接口位宽/类型,无带宽。
 - 修正:Cix P1 的带宽按 128-bit × 5500 MT/s 推算为 88 GB/s(CNX 文中写 100 GB/s 与自身位宽×速率不符)。
 - 仍无带宽:Sophgo 全系、Axera 全系、地平线 RDK X3/X5、RK3562/RV1126/RV1109/RV1126B、全志 T527/A733、昇腾 310B/310P、Coral、Apple A18 Pro、Core Ultra 7 155H(厂商官网多被代理拦截,PDF 链接失效)。
+
+## 带宽补全(第三次,官网放开后)
+
+- `specs_k.csv`(Sophgo,经其站点页面 API):BM1688 与 CV186X(按 CV186AH 假设)模组级 64-bit LPDDR4x-4266 = 34.1 GB/s;SC7 HP75-2 整卡(2×BM1684X)厂商标称 48GB LPDDR4x 384-bit 205 GB/s(整卡口径,未映射到单芯片)。BM1684/BM1684X 官网页面无位宽与速率。
+- `specs_l.csv`(Axera/地平线):AX650/AX8850 34.1 GB/s(与此前一致);RDK S100 96-bit LPDDR5-6400 = 76.8 GB/s;AX630C/AX620Q/AX637/AX615、RDK X3/X5 页面只有内存类型,无位宽与速率。

@@ -15,12 +15,12 @@ FPS/TOPS、FPS/(GB/s) 仅在规格表有数据时给出;空白=缺规格。各�
 | 5 | Axera | AX637/AX8910 | 141.0 | 官方 |  |  |  |  | 精度未标 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX637_AX8910.md) |
 | 6 | Axera | AX630C | 78.7 | 官方 | 3.2 |  | 24.59 |  | 精度未标 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX630C.md) |
 | 7 | Axera | AX620Q | 62.3 | 官方 | 2.4 |  | 25.95 |  | 精度未标 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX620Q.md) |
-| 8 | Rockchip | RK3576 | 57.5 | 官方 | 6.0 | 22.0 | 9.58 | 2.61 | INT8 | [link](https://github.com/airockchip/rknn_model_zoo/blob/main/README.md) |
+| 8 | Rockchip | RK3576 | 57.5 | 官方 | 6.0 | 19.2 | 9.58 | 2.99 | INT8 | [link](https://github.com/airockchip/rknn_model_zoo/blob/main/README.md) |
 | 9 | Axera | AX615 | 50.5 | 官方 |  |  |  |  | 精度未标 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX615.md) |
 | 10 | Allwinner | A733 | 49.8 | 官方 |  |  |  |  | UINT8 | [link](https://docs.radxa.com/en/cubie/a5e/app-dev/npu-dev/model-zoo/yolov5) |
 | 11 | Rockchip | RK3588 | 48.4 | 官方 | 6.0 | 44.0 | 8.07 | 1.1 | INT8 | [link](https://github.com/airockchip/rknn_model_zoo/blob/main/README.md) |
 | 12 | Rockchip | RK3588 | 47.0† | 社区 | 6.0 | 44.0 | 7.84 | 1.07 | INT8 | [link](https://deepseek.csdn.net/6a31fb10662f9a54cb80288d.html) |
-| 13 | Rockchip | RK3576 | 42.1† | 社区 | 6.0 | 22.0 | 7.02 | 1.92 | INT8 | [link](https://deepseek.csdn.net/6a31fb10662f9a54cb80288d.html) |
+| 13 | Rockchip | RK3576 | 42.1† | 社区 | 6.0 | 19.2 | 7.02 | 2.19 | INT8 | [link](https://deepseek.csdn.net/6a31fb10662f9a54cb80288d.html) |
 | 14 | Rockchip | RK1808 | 28.2 | 官方 |  |  |  |  | INT8 | [link](https://github.com/airockchip/rknn_model_zoo/blob/main/README.md) |
 | 15 | Rockchip | RK3562 | 23.6 | 官方 | 1.0 |  | 23.6 |  | INT8 | [link](https://github.com/airockchip/rknn_model_zoo/blob/main/README.md) |
 | 16 | Allwinner | T527 | 20.0 | 官方 | 2.0 |  | 10.0 |  | UINT8 | [link](https://docs.radxa.com/en/cubie/a5e/app-dev/npu-dev/model-zoo/yolov5) |
@@ -38,7 +38,7 @@ FPS/TOPS、FPS/(GB/s) 仅在规格表有数据时给出;空白=缺规格。各�
 | 4 | Axera | AX637/AX8910 | 212.1 | 官方 |  |  |  |  | 精度未标 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX637_AX8910.md) |
 | 5 | Hailo | Hailo-8L | 202.0 | 官方 | 13.0 |  | 15.54 |  | 精度未标 | [link](https://github.com/hailo-ai/hailo_model_zoo/blob/master/docs/public_models/HAILO8L/HAILO8L_object_detection.rst) |
 | 6 | Hailo | Hailo-8L | 144.7 | 社区 | 13.0 |  | 11.13 |  | 精度未标 | [link](https://github.com/aaronk2001/yolov8-hailo-pi5) |
-| 7 | Rockchip | RK3576 | 90.2 | 官方 | 6.0 | 22.0 | 15.03 | 4.1 | INT8 | [link](https://github.com/airockchip/rknn_model_zoo/blob/main/README.md) |
+| 7 | Rockchip | RK3576 | 90.2 | 官方 | 6.0 | 19.2 | 15.03 | 4.7 | INT8 | [link](https://github.com/airockchip/rknn_model_zoo/blob/main/README.md) |
 | 8 | Allwinner | A733 | 79.4 | 官方 |  |  |  |  | UINT8 | [link](https://docs.radxa.com/en/cubie/a5e/app-dev/npu-dev/model-zoo/yolov8) |
 | 9 | Rockchip | RK3588 | 73.5 | 官方 | 6.0 | 44.0 | 12.25 | 1.67 | INT8 | [link](https://github.com/airockchip/rknn_model_zoo/blob/main/README.md) |
 | 10 | Axera | AX615 | 65.2† | 官方 |  |  |  |  | 精度未标 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX615.md) |
@@ -62,7 +62,7 @@ FPS/TOPS、FPS/(GB/s) 仅在规格表有数据时给出;空白=缺规格。各�
 | 7 | Axera | AX637/AX8910 | 1111.0 | 官方 |  |  |  |  | 精度未标 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX637_AX8910.md) |
 | 8 | Axera | AX630C | 1083.4† | 官方 | 3.2 |  | 338.57 |  | 精度未标 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX630C.md) |
 | 9 | Axera | AX620Q | 816.3 | 官方 | 2.4 |  | 340.14 |  | 精度未标 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX620Q.md) |
-| 10 | Rockchip | RK3576 | 467.0 | 官方 | 6.0 | 22.0 | 77.83 | 21.23 | INT8 | [link](https://github.com/airockchip/rknn_model_zoo/blob/main/README.md) |
+| 10 | Rockchip | RK3576 | 467.0 | 官方 | 6.0 | 19.2 | 77.83 | 24.32 | INT8 | [link](https://github.com/airockchip/rknn_model_zoo/blob/main/README.md) |
 | 11 | Rockchip | RK3588 | 450.7 | 官方 | 6.0 | 44.0 | 75.12 | 10.24 | INT8 | [link](https://github.com/airockchip/rknn_model_zoo/blob/main/README.md) |
 | 12 | Google Coral | Coral Edge TPU (USB Accelerator) | 384.6† | 官方 | 4.0 |  | 96.15 |  | INT8 | [link](https://coral.ai/docs/edgetpu/benchmarks/) |
 | 13 | Google Coral | Coral Edge TPU (Dev Board) | 384.6† | 官方 | 4.0 |  | 96.15 |  | INT8 | [link](https://coral.ai/docs/edgetpu/benchmarks/) |
@@ -89,7 +89,7 @@ FPS/TOPS、FPS/(GB/s) 仅在规格表有数据时给出;空白=缺规格。各�
 | 8 | Axera | AX630C | 178.1† | 官方 | 3.2 |  | 55.64 |  | 精度未标 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX630C.md) |
 | 9 | Axera | AX620Q | 132.1 | 官方 | 2.4 |  | 55.02 |  | 精度未标 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX620Q.md) |
 | 10 | Rockchip | RK3588 | 110.1 | 官方 | 6.0 | 44.0 | 18.35 | 2.5 | INT8 | [link](https://github.com/airockchip/rknn_model_zoo/blob/main/README.md) |
-| 11 | Rockchip | RK3576 | 99.0 | 官方 | 6.0 | 22.0 | 16.5 | 4.5 | INT8 | [link](https://github.com/airockchip/rknn_model_zoo/blob/main/README.md) |
+| 11 | Rockchip | RK3576 | 99.0 | 官方 | 6.0 | 19.2 | 16.5 | 5.16 | INT8 | [link](https://github.com/airockchip/rknn_model_zoo/blob/main/README.md) |
 | 12 | Axera | AX615 | 86.1† | 官方 |  |  |  |  | 精度未标 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX615.md) |
 | 13 | Rockchip | RK3562 | 54.9 | 官方 | 1.0 |  | 54.9 |  | INT8 | [link](https://github.com/airockchip/rknn_model_zoo/blob/main/README.md) |
 | 14 | Rockchip | RK3566/RK3568 | 37.9 | 官方 | 0.8 |  | 47.37 |  | INT8 | [link](https://github.com/airockchip/rknn_model_zoo/blob/main/README.md) |
