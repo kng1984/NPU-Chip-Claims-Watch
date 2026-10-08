@@ -62,3 +62,9 @@
 - `data/coral.csv`(38 行):coral.ai 官方基准,19 个模型在 Edge TPU(USB Accelerator / Dev Board)上的单张推理延迟,Edge TPU 标称 4 TOPS(页面所述)。
 - `data/apple.csv`(33 行):Apple Core ML 模型库的推理时间(iPhone 13–16 Pro、iPad Pro、M1–M3 Max)。**计算单元为 "All",即 CPU/GPU/神经引擎由 Core ML 调度,不是纯 NPU**;含合并单元格的行被跳过,数据不完整。
 - 未取得:AMD Ryzen AI(文档站无数值,GitHub 页为空)、Hailo 社区(页面需 JS)、Reddit(返回空页)、Jeff Geerling 博文(返回空页)、Radxa RKLLM/CNX 的 RK3588 LLM 页面(返回空页)。
+
+## 第六轮:CSDN / 论坛 / 博客
+
+- `data/web_forum_cn.csv`(10 行):PhotonVision(Orange Pi 5,RK3588 的 YOLOv5/v5u/v8/11 延迟)、CSDN 触觉智能(RK3576 与 RK3588 的 YOLOv5s,23.7 / 21.3 ms)、Radxa 多路 YOLOv8n 文档、地瓜论坛(RDK X5 YOLOv8n 11.4 ms,整链路仅 4–5 FPS)、TinyComputers 博客(含一条疑似离群的 RK3576 数据,已标注)。
+- CSDN 其余文章要么是端到端摄像头帧率、要么是区间值(如 "13–16 FPS"、"100+ FPS")或缺少测试条件,未收录。Seeed 的 RK 基准页只是 Rockchip 官方表的转载,已在 `rockchip.csv` 中。
+- 搜索未找到可引用的:算能 BM1684X/BM1688、爱芯 AX650N/AX630C、海思、昇腾 Orange Pi AIpro 的 CSDN 实测(AIpro 那篇似为 CPU 推理)。
