@@ -68,3 +68,8 @@
 - `data/web_forum_cn.csv`(10 行):PhotonVision(Orange Pi 5,RK3588 的 YOLOv5/v5u/v8/11 延迟)、CSDN 触觉智能(RK3576 与 RK3588 的 YOLOv5s,23.7 / 21.3 ms)、Radxa 多路 YOLOv8n 文档、地瓜论坛(RDK X5 YOLOv8n 11.4 ms,整链路仅 4–5 FPS)、TinyComputers 博客(含一条疑似离群的 RK3576 数据,已标注)。
 - CSDN 其余文章要么是端到端摄像头帧率、要么是区间值(如 "13–16 FPS"、"100+ FPS")或缺少测试条件,未收录。Seeed 的 RK 基准页只是 Rockchip 官方表的转载,已在 `rockchip.csv` 中。
 - 搜索未找到可引用的:算能 BM1684X/BM1688、爱芯 AX650N/AX630C、海思、昇腾 Orange Pi AIpro 的 CSDN 实测(AIpro 那篇似为 CPU 推理)。
+
+## 同口径排名
+
+- `rank2.py` → `RANKING_LIKE_FOR_LIKE.md`:YOLOv5s、YOLOv8n(640×640)、ResNet50、MobileNetV2(224×224),仅取 INT8 类精度(或未标精度)、批大小 1、仅 NPU 推理的数据;延迟换算为 FPS(†);官方与社区分列;规格表有数据时给出 FPS/TOPS 与 FPS/(GB/s)。
+- 与 `RANKING.md`(宽口径)的区别:前者剔除了批大小>1、端到端流水线、多路并发和离群值。仍需注意:各家软件栈不同,Qualcomm/Apple 等手机 SoC 数据是厂商云端设备实测的纯 NPU 延迟,与开发板数据口径并不完全相同。
