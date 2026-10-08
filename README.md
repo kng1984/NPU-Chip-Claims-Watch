@@ -98,3 +98,8 @@
 
 - `specs_k.csv`(Sophgo,经其站点页面 API):BM1688 与 CV186X(按 CV186AH 假设)模组级 64-bit LPDDR4x-4266 = 34.1 GB/s;SC7 HP75-2 整卡(2×BM1684X)厂商标称 48GB LPDDR4x 384-bit 205 GB/s(整卡口径,未映射到单芯片)。BM1684/BM1684X 官网页面无位宽与速率。
 - `specs_l.csv`(Axera/地平线):AX650/AX8850 34.1 GB/s(与此前一致);RDK S100 96-bit LPDDR5-6400 = 76.8 GB/s;AX630C/AX620Q/AX637/AX615、RDK X3/X5 页面只有内存类型,无位宽与速率。
+
+## 带宽补全(第四次:Rockchip/全志/此芯)
+
+- `specs_m.csv`:按 位宽/8 × 数据率 推算(加载器 DDR 时钟为默认初始化频率,非芯片上限;DDR 双倍速率为假设,备注已标):RK3576 21.9(LPDDR5)/16.9(LPDDR4x)GB/s、RK3588 38.4(LPDDR5)/33.8(LPDDR4X)、RV1126B 10.7、RK1808 6.4、全志 A733 19.2(厂商页标称的芯片上限,LPDDR5-4800)、此芯 P1 88(板卡配置)。排名取每颗芯片的第一行(LPDDR5 配置),优先于早先的 Wikipedia/板卡估算(RK3576 19.2 与 22、RK3588 34.1 与 44)。
+- 厂商均未直接给出 GB/s;RK3562、RK3566/68、RV1126、T527、V853、Coral、Apple A18 Pro、Core Ultra 7 155H 仍只有内存类型。Huawei 昇腾官网(e.huawei.com、hiascend.com)不可达。

@@ -2,7 +2,7 @@
 import csv, glob, re, collections
 
 specs = {}
-for f in ['data/specs_g.csv', 'data/specs_f.csv', 'data/specs_h.csv', 'data/specs_d.csv', 'data/specs_e.csv', 'data/specs_j.csv', 'data/specs_k.csv', 'data/specs_l.csv', 'data/specs_m.csv', 'data/chip_specs.csv', 'data/specs_a.csv', 'data/specs_b.csv']:
+for f in ['data/specs_m.csv', 'data/specs_g.csv', 'data/specs_f.csv', 'data/specs_h.csv', 'data/specs_d.csv', 'data/specs_e.csv', 'data/specs_j.csv', 'data/specs_k.csv', 'data/specs_l.csv', 'data/chip_specs.csv', 'data/specs_a.csv', 'data/specs_b.csv']:
     if not __import__('os').path.exists(f): continue  # first non-empty value wins
     for r in csv.DictReader(open(f)):
         cur = specs.setdefault((r['vendor'], r['chip']), dict(r))
