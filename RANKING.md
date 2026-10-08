@@ -2,7 +2,7 @@
 
 由 `rank.py` 生成。只比较 fps 指标；同一芯片同模型取最大值（批大小/输入尺寸可能不同，见源 CSV 的 notes）。
 FPS/TOPS、FPS/(GB/s) 仅在 `data/chip_specs.csv` 有对应规格时给出，空表示缺规格，**不是 0**。
-各厂商测试口径不同，跨厂商排名仅供参考。
+各厂商测试口径不同，跨厂商排名仅供参考。† = 由延迟换算(1000/latency_ms，批大小1)，非厂商直接给出的 FPS。
 
 ## YOLOv5s · n/a
 
@@ -462,22 +462,22 @@ FPS/TOPS、FPS/(GB/s) 仅在 `data/chip_specs.csv` 有对应规格时给出，�
 | 6 | Rockchip | RV1126 | 65.8 |  |  |  |  | [link](https://github.com/airockchip/rknn_model_zoo/blob/main/README.md) |
 | 7 | Rockchip | RV1109 | 48 |  |  |  |  | [link](https://github.com/airockchip/rknn_model_zoo/blob/main/README.md) |
 
-## MobileNetv2 · n/a
+## ConvNext-Tiny · float
 
 | # | 厂商 | 芯片 | FPS | NPU TOPS(INT8) | 带宽 GB/s | FPS/TOPS | FPS/(GB/s) | 来源 |
 |---|---|---|---|---|---|---|---|---|
-| 1 | Axera | AX650/AX8850 | 3546.1 | 24.0 | 34.1 | 147.75 | 103.99 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX650_AX8850.md) |
-| 2 | Axera | AX637/AX8910 | 1111 |  |  |  |  | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX637_AX8910.md) |
-| 3 | Axera | AX630C | 1083.42 | 3.2 |  | 338.57 |  | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX630C.md) |
-| 4 | Axera | AX620Q | 816.33 | 2.4 |  | 340.14 |  | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX620Q.md) |
-| 5 | Axera | AX615 | 345.3 |  |  |  |  | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX615.md) |
+| 1 | Qualcomm | Snapdragon 8 Elite Gen 5 | 761.615† |  |  |  |  | [link](https://huggingface.co/qualcomm/ConvNext-Tiny) |
+| 2 | Qualcomm | Snapdragon X2 Elite | 751.88† |  |  |  |  | [link](https://huggingface.co/qualcomm/ConvNext-Tiny) |
+| 3 | Qualcomm | Snapdragon 8 Elite | 641.026† |  | 84.8 |  | 7.56 | [link](https://huggingface.co/qualcomm/ConvNext-Tiny) |
+| 4 | Qualcomm | Snapdragon 8 Gen 3 | 493.583† |  | 76.8 |  | 6.43 | [link](https://huggingface.co/qualcomm/ConvNext-Tiny) |
+| 5 | Qualcomm | Snapdragon X Elite | 375.375† | 45.0 | 135.0 | 8.34 | 2.78 | [link](https://huggingface.co/qualcomm/ConvNext-Tiny) |
 
-## ResNet50 · n/a
+## ConvNext-Tiny · w8a16
 
 | # | 厂商 | 芯片 | FPS | NPU TOPS(INT8) | 带宽 GB/s | FPS/TOPS | FPS/(GB/s) | 来源 |
 |---|---|---|---|---|---|---|---|---|
-| 1 | Axera | AX650/AX8850 | 749.06 | 24.0 | 34.1 | 31.21 | 21.97 | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX650_AX8850.md) |
-| 2 | Axera | AX637/AX8910 | 292 |  |  |  |  | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX637_AX8910.md) |
-| 3 | Axera | AX630C | 178.06 | 3.2 |  | 55.64 |  | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX630C.md) |
-| 4 | Axera | AX620Q | 132.05 | 2.4 |  | 55.02 |  | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX620Q.md) |
-| 5 | Axera | AX615 | 86.05 |  |  |  |  | [link](https://github.com/AXERA-TECH/ax-samples/blob/main/benchmark/Benchmark_AX615.md) |
+| 1 | Qualcomm | Snapdragon X2 Elite | 1153.4† |  |  |  |  | [link](https://huggingface.co/qualcomm/ConvNext-Tiny) |
+| 2 | Qualcomm | Snapdragon 8 Elite Gen 5 | 1149.43† |  |  |  |  | [link](https://huggingface.co/qualcomm/ConvNext-Tiny) |
+| 3 | Qualcomm | Snapdragon 8 Elite | 925.069† |  | 84.8 |  | 10.91 | [link](https://huggingface.co/qualcomm/ConvNext-Tiny) |
+| 4 | Qualcomm | Snapdragon 8 Gen 3 | 650.195† |  | 76.8 |  | 8.47 | [link](https://huggingface.co/qualcomm/ConvNext-Tiny) |
+| 5 | Qualcomm | Snapdragon X Elite | 456.413† | 45.0 | 135.0 | 10.14 | 3.38 | [link](https://huggingface.co/qualcomm/ConvNext-Tiny) |

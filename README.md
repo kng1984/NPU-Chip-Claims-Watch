@@ -42,3 +42,11 @@
 - `data/specs_a.csv`、`data/specs_b.csv`:从 GitHub 文档仓库收集的规格,`rank.py` 会与 `chip_specs.csv` 合并(先出现的非空值优先)。仍缺:所有芯片的制程/FP16 基本为空;带宽只有 RK3576(22)、RK3588(44)、AX650/AX8850(34.1)三个,均为按板卡/模组位宽×速率算出的理论峰值;Sophgo 的 BM1684/BM1684X/BM1688 TOPS 来自 sophon-tools 代码注释,可信度较弱;RV1126、RK3588 等未标精度的 NPU 算力放在 notes,未计入 INT8 列。
 - `data/community.csv`、`qualcomm.csv`、`intel.csv`、`cambricon.csv`、`huawei_ascend_910.csv`:社区/第三方 GitHub 实测,**未与原页面逐条核对**,含近似值与区间,硬件口径不一,**不参与 `RANKING.md`**。
 - 仍无法访问论坛与规格站点(知乎、Reddit、CNX、Radxa 论坛、厂商官网、Qualcomm AI Hub、HuggingFace),需在环境网络设置中放开后才能补齐。
+
+## 第三轮(网络放开后)
+
+- `data/web_qualcomm.csv`:Qualcomm AI Hub 在 HuggingFace 的官方模型卡(2557 行,延迟与 LLM tokens/s)。排名里把批 1、NPU 的视觉模型延迟换算成 FPS(带 † 标记),LLM 行不入排名。
+- `data/web_intel.csv`:仅 2 行(Core Ultra 9 288V,MLPerf Client Llama-2-7B);OpenVINO 官方页没有 NPU 数值。
+- `data/web_forum_en.csv`:Hailo 官方 model zoo(批 1)与 Coral 延迟。
+- 规格新增 `specs_d.csv`(Sophgo/Axera/RDK)、`specs_e.csv`(Hailo/昇腾/寒武纪/骁龙/Intel)、`specs_f.csv`(带页面依据的更正,合并时优先)。已知冲突记录在各行 notes:AX650 的 INT8 算力(10.8 vs 18)、AX8850(24)与 AX650N 不是同一颗芯片、昇腾 310P3 为第三方整卡数据折半。
+- 中文论坛(知乎/CSDN/Radxa 论坛)实测尚未收集:子 agent 的 WebFetch 无法解析域名、curl 被权限分类器拦截;Rockchip 规格(RK3562/RK3566/RV11xx 等)也因此未补。
