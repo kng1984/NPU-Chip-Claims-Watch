@@ -1,0 +1,446 @@
+{
+ "rss:Ars Technica": {
+  "n": 20,
+  "err": null
+ },
+ "rss:The Verge": {
+  "n": 10,
+  "err": null
+ },
+ "rss:Engadget": {
+  "n": 20,
+  "err": null
+ },
+ "rss:TechCrunch": {
+  "n": 20,
+  "err": null
+ },
+ "rss:Wired": {
+  "n": 50,
+  "err": null
+ },
+ "rss:Tom's Hardware": {
+  "n": 50,
+  "err": null
+ },
+ "rss:The Register": {
+  "n": 50,
+  "err": null
+ },
+ "rss:Phoronix": {
+  "n": 32,
+  "err": null
+ },
+ "rss:ServeTheHome": {
+  "n": 6,
+  "err": null
+ },
+ "rss:Semiconductor Engineering": {
+  "n": 10,
+  "err": null
+ },
+ "rss:EE Times": {
+  "n": 10,
+  "err": null
+ },
+ "rss:Notebookcheck": {
+  "n": 500,
+  "err": null
+ },
+ "rss:Liliputing": {
+  "n": 20,
+  "err": null
+ },
+ "rss:CNX Software": {
+  "n": 32,
+  "err": null
+ },
+ "rss:Hackaday": {
+  "n": 7,
+  "err": null
+ },
+ "rss:IT之家": {
+  "n": 60,
+  "err": null
+ },
+ "rss:36氪": {
+  "n": 30,
+  "err": null
+ },
+ "rss:少数派": {
+  "n": 10,
+  "err": null
+ },
+ "rss:爱范儿": {
+  "n": 20,
+  "err": null
+ },
+ "rss:机器之心": {
+  "n": 0,
+  "err": "ParseError: not well-formed (invalid token): line 7, column 82"
+ },
+ "rss:量子位": {
+  "n": 10,
+  "err": null
+ },
+ "rss:Product Hunt": {
+  "n": 50,
+  "err": null
+ },
+ "rss:Gizmodo": {
+  "n": 20,
+  "err": null
+ },
+ "rss:SlashGear": {
+  "n": 20,
+  "err": null
+ },
+ "rss:GSMArena": {
+  "n": 20,
+  "err": null
+ },
+ "rss:Crowd Supply": {
+  "n": 0,
+  "err": "HTTPError: HTTP Error 404: Not Found"
+ },
+ "rss:Hackaday.io projects": {
+  "n": 0,
+  "err": "HTTPError: HTTP Error 404: Not Found"
+ },
+ "rss:Kickstarter (Hackaday tag)": {
+  "n": 7,
+  "err": null
+ },
+ "rss:Kickstarter (CNX tag)": {
+  "n": 32,
+  "err": null
+ },
+ "rss:Indiegogo (CNX tag)": {
+  "n": 32,
+  "err": null
+ },
+ "rss:Kickstarter (Liliputing tag)": {
+  "n": 20,
+  "err": null
+ },
+ "rss:Crowdfunding (Gizmodo)": {
+  "n": 3,
+  "err": null
+ },
+ "rss:Lobsters": {
+  "n": 25,
+  "err": null
+ },
+ "rss:V2EX": {
+  "n": 50,
+  "err": null
+ },
+ "rss:Reddit r/hardware": {
+  "n": 0,
+  "err": "ParseError: not well-formed (invalid token): line 24, column 150"
+ },
+ "rss:Reddit r/buildapc": {
+  "n": 0,
+  "err": "ParseError: not well-formed (invalid token): line 24, column 150"
+ },
+ "rss:Reddit r/LocalLLaMA": {
+  "n": 0,
+  "err": "ParseError: not well-formed (invalid token): line 24, column 150"
+ },
+ "rss:Reddit r/selfhosted": {
+  "n": 0,
+  "err": "ParseError: not well-formed (invalid token): line 24, column 150"
+ },
+ "rss:Reddit r/embedded": {
+  "n": 0,
+  "err": "ParseError: not well-formed (invalid token): line 24, column 150"
+ },
+ "rss:Reddit r/MachineLearning": {
+  "n": 0,
+  "err": "ParseError: not well-formed (invalid token): line 24, column 150"
+ },
+ "rss:NVIDIA Developer": {
+  "n": 100,
+  "err": null
+ },
+ "rss:Google Research": {
+  "n": 100,
+  "err": null
+ },
+ "rss:Google Developers": {
+  "n": 20,
+  "err": null
+ },
+ "rss:Meta Engineering": {
+  "n": 9,
+  "err": null
+ },
+ "rss:AWS ML": {
+  "n": 20,
+  "err": null
+ },
+ "rss:Microsoft Research": {
+  "n": 10,
+  "err": null
+ },
+ "rss:Hugging Face": {
+  "n": 876,
+  "err": null
+ },
+ "rss:OpenAI": {
+  "n": 1287,
+  "err": null
+ },
+ "rss:Cloudflare": {
+  "n": 20,
+  "err": null
+ },
+ "rss:Apple ML": {
+  "n": 10,
+  "err": null
+ },
+ "rss:Simon Willison": {
+  "n": 30,
+  "err": null
+ },
+ "rss:LWN": {
+  "n": 15,
+  "err": null
+ },
+ "rss:Chips and Cheese": {
+  "n": 20,
+  "err": null
+ },
+ "rss:SemiAnalysis": {
+  "n": 10,
+  "err": null
+ },
+ "rss:Netflix Tech": {
+  "n": 10,
+  "err": null
+ },
+ "rss:Uber Eng": {
+  "n": 0,
+  "err": "HTTPError: HTTP Error 406: Not Acceptable"
+ },
+ "rss:Stripe": {
+  "n": 10,
+  "err": null
+ },
+ "rss:美团技术": {
+  "n": 10,
+  "err": null
+ },
+ "rss:阿里云开发者": {
+  "n": 0,
+  "err": "HTTPError: HTTP Error 404: Not Found"
+ },
+ "rss:Intel Newsroom": {
+  "n": 0,
+  "err": "ParseError: syntax error: line 1, column 0"
+ },
+ "rss:AMD": {
+  "n": 0,
+  "err": "HTTPError: HTTP Error 404: Not Found"
+ },
+ "rss:Qualcomm": {
+  "n": 0,
+  "err": "HTTPError: HTTP Error 404: Not Found"
+ },
+ "rss:Arm": {
+  "n": 6,
+  "err": null
+ },
+ "rss:NVIDIA Newsroom": {
+  "n": 20,
+  "err": null
+ },
+ "rss:Raspberry Pi": {
+  "n": 10,
+  "err": null
+ },
+ "rss:Espressif": {
+  "n": 0,
+  "err": "HTTPError: HTTP Error 404: Not Found"
+ },
+ "rss:RISC-V International": {
+  "n": 10,
+  "err": null
+ },
+ "arxiv:cs.AR": {
+  "n": 100,
+  "err": null
+ },
+ "arxiv:cs.DC": {
+  "n": 100,
+  "err": null
+ },
+ "arxiv:cs.LG": {
+  "n": 100,
+  "err": null
+ },
+ "arxiv:cs.OS": {
+  "n": 100,
+  "err": null
+ },
+ "arxiv:cs.PF": {
+  "n": 100,
+  "err": null
+ },
+ "arxiv:cs.CL": {
+  "n": 100,
+  "err": null
+ },
+ "arxiv:cs.CV": {
+  "n": 100,
+  "err": null
+ },
+ "arxiv:cs.CR": {
+  "n": 100,
+  "err": null
+ },
+ "arxiv:cs.DB": {
+  "n": 100,
+  "err": null
+ },
+ "arxiv:cs.NI": {
+  "n": 100,
+  "err": null
+ },
+ "arxiv:cs.RO": {
+  "n": 100,
+  "err": null
+ },
+ "arxiv:cs.SE": {
+  "n": 100,
+  "err": null
+ },
+ "arxiv:cs.ET": {
+  "n": 100,
+  "err": null
+ },
+ "arxiv:cs.PL": {
+  "n": 100,
+  "err": null
+ },
+ "arxiv:cs.AI": {
+  "n": 100,
+  "err": null
+ },
+ "arxiv:eess.SP": {
+  "n": 100,
+  "err": null
+ },
+ "hf:daily": {
+  "n": 50,
+  "err": null
+ },
+ "hn:front": {
+  "n": 100,
+  "err": null
+ },
+ "hnq:NPU": {
+  "n": 30,
+  "err": null
+ },
+ "hnq:edge AI": {
+  "n": 30,
+  "err": null
+ },
+ "hnq:local LLM": {
+  "n": 30,
+  "err": null
+ },
+ "hnq:RISC-V": {
+  "n": 30,
+  "err": null
+ },
+ "hnq:GPU shortage": {
+  "n": 12,
+  "err": null
+ },
+ "hnq:power consumption": {
+  "n": 5,
+  "err": null
+ },
+ "hnq:overheating": {
+  "n": 6,
+  "err": null
+ },
+ "hnq:buggy driver": {
+  "n": 0,
+  "err": null
+ },
+ "hnq:vendor lock-in": {
+  "n": 15,
+  "err": null
+ },
+ "hnq:CUDA alternative": {
+  "n": 3,
+  "err": null
+ },
+ "hnq:wish there was a": {
+  "n": 30,
+  "err": null
+ },
+ "hnq:why is it so hard": {
+  "n": 30,
+  "err": null
+ },
+ "hnq:Ask HN hardware frustrating": {
+  "n": 0,
+  "err": null
+ },
+ "hnq:firmware update bricked": {
+  "n": 3,
+  "err": null
+ },
+ "hnq:right to repair": {
+  "n": 15,
+  "err": null
+ },
+ "hnq:battery life": {
+  "n": 30,
+  "err": null
+ },
+ "hnq:thermal throttling": {
+  "n": 4,
+  "err": null
+ },
+ "hnq:on-device inference": {
+  "n": 11,
+  "err": null
+ },
+ "hnq:quantization": {
+  "n": 30,
+  "err": null
+ },
+ "hnq:open source hardware": {
+  "n": 30,
+  "err": null
+ },
+ "hnq:FPGA": {
+  "n": 30,
+  "err": null
+ },
+ "hnq:homelab": {
+  "n": 30,
+  "err": null
+ },
+ "hnq:SBC": {
+  "n": 30,
+  "err": null
+ },
+ "hnq:Raspberry Pi alternative": {
+  "n": 0,
+  "err": null
+ },
+ "hnq:DRAM prices": {
+  "n": 8,
+  "err": null
+ },
+ "hnq:HBM": {
+  "n": 30,
+  "err": null
+ }
+}

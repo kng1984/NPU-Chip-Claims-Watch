@@ -1,0 +1,310 @@
+{
+ "rss": [
+  [
+   "media",
+   "Ars Technica",
+   "https://arstechnica.com/feed/"
+  ],
+  [
+   "media",
+   "The Verge",
+   "https://www.theverge.com/rss/index.xml"
+  ],
+  [
+   "media",
+   "Engadget",
+   "https://www.engadget.com/rss.xml"
+  ],
+  [
+   "media",
+   "TechCrunch",
+   "https://techcrunch.com/feed/"
+  ],
+  [
+   "media",
+   "Wired",
+   "https://www.wired.com/feed/rss"
+  ],
+  [
+   "media",
+   "Tom's Hardware",
+   "https://www.tomshardware.com/feeds/all"
+  ],
+  [
+   "media",
+   "The Register",
+   "https://www.theregister.com/headlines.atom"
+  ],
+  [
+   "media",
+   "Phoronix",
+   "https://www.phoronix.com/rss.php"
+  ],
+  [
+   "media",
+   "ServeTheHome",
+   "https://www.servethehome.com/feed/"
+  ],
+  [
+   "media",
+   "Semiconductor Engineering",
+   "https://semiengineering.com/feed/"
+  ],
+  [
+   "media",
+   "EE Times",
+   "https://www.eetimes.com/feed/"
+  ],
+  [
+   "media",
+   "Notebookcheck",
+   "https://www.notebookcheck.net/News.152.100.html?type=rss"
+  ],
+  [
+   "media",
+   "Liliputing",
+   "https://liliputing.com/feed/"
+  ],
+  [
+   "media",
+   "CNX Software",
+   "https://www.cnx-software.com/feed/"
+  ],
+  [
+   "media",
+   "Hackaday",
+   "https://hackaday.com/blog/feed/"
+  ],
+  [
+   "media",
+   "IT之家",
+   "https://www.ithome.com/rss/"
+  ],
+  [
+   "media",
+   "36氪",
+   "https://www.36kr.com/feed"
+  ],
+  [
+   "media",
+   "少数派",
+   "https://sspai.com/feed"
+  ],
+  [
+   "media",
+   "爱范儿",
+   "https://www.ifanr.com/feed"
+  ],
+  [
+   "media",
+   "量子位",
+   "https://www.qbitai.com/feed"
+  ],
+  [
+   "newproduct",
+   "Product Hunt",
+   "https://www.producthunt.com/feed"
+  ],
+  [
+   "newproduct",
+   "Gizmodo",
+   "https://gizmodo.com/feed"
+  ],
+  [
+   "newproduct",
+   "SlashGear",
+   "https://www.slashgear.com/feed/"
+  ],
+  [
+   "newproduct",
+   "GSMArena",
+   "https://www.gsmarena.com/rss-news-reviews.php3"
+  ],
+  [
+   "crowdfunding",
+   "Kickstarter (Hackaday tag)",
+   "https://hackaday.com/tag/kickstarter/feed/"
+  ],
+  [
+   "crowdfunding",
+   "Kickstarter (CNX tag)",
+   "https://www.cnx-software.com/tag/kickstarter/feed/"
+  ],
+  [
+   "crowdfunding",
+   "Indiegogo (CNX tag)",
+   "https://www.cnx-software.com/tag/indiegogo/feed/"
+  ],
+  [
+   "crowdfunding",
+   "Kickstarter (Liliputing tag)",
+   "https://liliputing.com/tag/kickstarter/feed/"
+  ],
+  [
+   "crowdfunding",
+   "Crowdfunding (Gizmodo)",
+   "https://gizmodo.com/tag/kickstarter/rss"
+  ],
+  [
+   "complaint",
+   "Lobsters",
+   "https://lobste.rs/rss"
+  ],
+  [
+   "complaint",
+   "V2EX",
+   "https://www.v2ex.com/index.xml"
+  ],
+  [
+   "blog",
+   "NVIDIA Developer",
+   "https://developer.nvidia.com/blog/feed"
+  ],
+  [
+   "blog",
+   "Google Research",
+   "https://research.google/blog/rss/"
+  ],
+  [
+   "blog",
+   "Google Developers",
+   "https://developers.googleblog.com/feeds/posts/default"
+  ],
+  [
+   "blog",
+   "Meta Engineering",
+   "https://engineering.fb.com/feed/"
+  ],
+  [
+   "blog",
+   "AWS ML",
+   "https://aws.amazon.com/blogs/machine-learning/feed/"
+  ],
+  [
+   "blog",
+   "Microsoft Research",
+   "https://www.microsoft.com/en-us/research/feed/"
+  ],
+  [
+   "blog",
+   "Hugging Face",
+   "https://huggingface.co/blog/feed.xml"
+  ],
+  [
+   "blog",
+   "OpenAI",
+   "https://openai.com/news/rss.xml"
+  ],
+  [
+   "blog",
+   "Cloudflare",
+   "https://blog.cloudflare.com/rss/"
+  ],
+  [
+   "blog",
+   "Apple ML",
+   "https://machinelearning.apple.com/rss.xml"
+  ],
+  [
+   "blog",
+   "Simon Willison",
+   "https://simonwillison.net/atom/everything/"
+  ],
+  [
+   "blog",
+   "LWN",
+   "https://lwn.net/headlines/rss"
+  ],
+  [
+   "blog",
+   "Chips and Cheese",
+   "https://chipsandcheese.com/feed/"
+  ],
+  [
+   "blog",
+   "SemiAnalysis",
+   "https://www.semianalysis.com/feed"
+  ],
+  [
+   "blog",
+   "Netflix Tech",
+   "https://netflixtechblog.com/feed"
+  ],
+  [
+   "blog",
+   "Stripe",
+   "https://stripe.com/blog/feed.rss"
+  ],
+  [
+   "blog",
+   "美团技术",
+   "https://tech.meituan.com/feed/"
+  ],
+  [
+   "vendor",
+   "Arm",
+   "https://newsroom.arm.com/rss"
+  ],
+  [
+   "vendor",
+   "NVIDIA Newsroom",
+   "https://nvidianews.nvidia.com/releases.xml"
+  ],
+  [
+   "vendor",
+   "Raspberry Pi",
+   "https://www.raspberrypi.com/news/feed/"
+  ],
+  [
+   "vendor",
+   "RISC-V International",
+   "https://riscv.org/feed/"
+  ]
+ ],
+ "arxiv": [
+  "cs.AR",
+  "cs.DC",
+  "cs.LG",
+  "cs.OS",
+  "cs.PF",
+  "cs.CL",
+  "cs.CV",
+  "cs.CR",
+  "cs.DB",
+  "cs.NI",
+  "cs.RO",
+  "cs.SE",
+  "cs.ET",
+  "cs.PL",
+  "cs.AI",
+  "eess.SP"
+ ],
+ "hn_queries": [
+  "NPU",
+  "edge AI",
+  "local LLM",
+  "RISC-V",
+  "GPU shortage",
+  "power consumption",
+  "overheating",
+  "buggy driver",
+  "vendor lock-in",
+  "CUDA alternative",
+  "wish there was a",
+  "why is it so hard",
+  "Ask HN hardware frustrating",
+  "firmware update bricked",
+  "right to repair",
+  "battery life",
+  "thermal throttling",
+  "on-device inference",
+  "quantization",
+  "open source hardware",
+  "FPGA",
+  "homelab",
+  "SBC",
+  "Raspberry Pi alternative",
+  "DRAM prices",
+  "HBM"
+ ]
+}
