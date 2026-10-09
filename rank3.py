@@ -61,12 +61,29 @@ def scenario(name, task, fam):
     if re.search(r'yolo|ssd|ppyoloe', n): return '目标检测'
     return '图像分类'
 
-INT8_OK = re.compile(r'^(|int8|uint8|a8w8|w8a8|int8 \(int8\))$', re.I)
+INT8_OK = re.compile(r'^(|int8|uint8|a8w8|w8a8|int8 \(int8\)|quantized.*|not stated.*)$', re.I)
 def batch_ok(r):
     txt = ' '.join([r['notes'], r['model'], r['runtime']]).lower()
     return all(int(b) == 1 for b in re.findall(r'batch[ =_:]*(\d+)', txt))
 def cls(r):
     return 'community' if r['notes'].lower().startswith(('community', 'forum', 'media')) else 'official'
+
+
+def sophgo_model(m):
+    """Map a sophon-demo row 'Group / chip/file_precision_1b.bmodel' to (model name, assumed input edge)."""
+    parts = [p.strip() for p in m.split(' / ')]
+    grp = parts[0].lower(); f = parts[-1].split('/')[-1].lower()
+    base = re.split(r'_(?:fp32|fp16|f16|f32|int8|bf16)', f)[0]
+    base = re.sub(r'_v\d.*$', '', base)
+    if grp == 'yolov5' and base.startswith('yolov5s'): return ('yolov5s', '640')
+    if grp == 'yolov8_plus_det' and base.startswith('yolov8') and base[6] in 'nsm': return ('yolov8' + base[6], '640')
+    if grp == 'yolov8_plus_seg' and base.startswith('yolov8') and base[6] in 'nsm': return ('yolov8' + base[6] + '-seg', '640')
+    if grp == 'yolov8_pose' and base.startswith('yolov8') and base[6] in 'nsm': return ('yolov8' + base[6] + '-pose', '640')
+    if grp == 'yolov10' and base.startswith('yolov10') and base[7] in 'ns': return ('yolov10' + base[7], '640')
+    if grp == 'yolov7' and base.startswith('yolov7') and 'tiny' not in base: return ('yolov7', '640')
+    if grp == 'yolox' and base in ('yolox_s', 'yolox_m'): return ('yolox-' + base[-1], '640')
+    if grp == 'resnet' and base.startswith('resnet50'): return ('resnet50', '224')
+    return None
 
 # ---------- vision rows -> effective TOPS ----------
 obs = []
@@ -80,6 +97,12 @@ for f in sorted(glob.glob('data/*.csv')):
         if any(w in n for w in ('concurrent', 'end-to-end', 'pipeline', 'outlier', 'not npu-only', 'synthetic')): continue
         if 'compute unit' in n and 'compute unit npu' not in n: continue
         if r['vendor'] == 'Hailo' and cls(r) == 'official': continue
+        if r['vendor'] == 'Huawei Ascend' and not re.search(r'batch[ =_:]*1\b', (r['notes'] + ' ' + r['model']).lower()): continue  # batch not stated => likely max-throughput batch
+        if r['vendor'] == 'Sophgo':
+            if r['chip'] in ('SRM1-20', 'SC7-HP75', 'SC7-224T'): continue
+            r = dict(r); mn = sophgo_model(r['model'])
+            if not mn: continue
+            r['model'] = mn[0]; r['input_size'] = r['input_size'] or mn[1]
         if r['vendor'] == 'Qualcomm' and norm(r['model']) in ('yolov7',): continue  # AI Hub variant unclear
         m = match_ops(r['model'], edge(r['input_size']))
         v = num(r['value'])
@@ -228,3 +251,102 @@ if dropped:
     out_text += '\n\n---\n已剔除的不合理折算(CNN: 等效算力>1.3×标称;LLM: MoE 或超过理论带宽 1.15 倍;VLM 因名称参数量含视觉塔已不计入 LLM 榜): ' + '; '.join(f'{d[0]} {d[1]} {d[2]} {d[3]}>{d[4]}' for d in dropped[:20]) + '\n'
 open('RANKING_EFFECTIVE.md', 'w').write(out_text)
 print(len(llm), 'llm rows;', len(rows), 'chips;', len(dropped), 'dropped')
+
+# ================= master table: every chip in one list =================
+def vnorm(v): return 'Google Coral' if v == 'Google' else v
+allchips = set()
+for f in sorted(glob.glob('data/*.csv')):
+    b = os.path.basename(f)
+    if b.startswith('specs_') or b == 'chip_specs.csv': continue
+    for r in csv.DictReader(open(f)):
+        if f.endswith('apple.csv'): continue
+        c = norm_chip(r['chip'])
+        if c in ('SRM1-20', 'SC7-HP75', 'SC7-224T') or c.startswith(('Qualcomm SA', 'Qualcomm® SA')) or 'Dragonwing' in c or c.startswith('Intel NPU (SoC') or c == 'MLU590-M9' or c.startswith('Snapdragon 8 Gen 1'): continue
+        allchips.add((vnorm(r['vendor']), c))
+allchips |= {('Apple', 'A18 Pro / M-series (Core ML)')}
+
+def pick(res):  # (vendor, chip) -> best entry, official preferred
+    d = {}
+    for e in res:
+        k = (vnorm(e['key'][0]), e['key'][1])
+        if k not in d or (e['key'][2] == 'official' and d[k]['key'][2] != 'official'): d[k] = e
+    return d
+cnn_d = pick(agg([o for o in obs if o['fam'] == 'CNN']))
+tr_d = pick(agg([o for o in obs if o['fam'] == 'Transformer']))
+llm_d = {}
+for med, k, v, bw in rows:
+    kk = (vnorm(k[0]), k[1])
+    if kk not in llm_d or (k[2] == 'official' and llm_d[kk][1] != 'official'): llm_d[kk] = (med, k[2], len(v), bw)
+
+
+STATUS = {('Cix', 'P1 (CD8180)'): '仅合成基准:卷积网络等效约 20–22 TOPS、矩阵乘约 3.5 TOPS(社区实测);BiSeNet 10.7 ms 缺 GOPs;无标准模型成绩',
+          ('Apple', 'A18 Pro / M-series (Core ML)'): 'Core ML 延迟(FP16,计算单元=CPU/GPU/神经引擎调度),与纯 NPU 不可比',
+          ('Cambricon', 'MLU590'): '仅算子微基准,无模型级成绩', ('Intel', 'Core Ultra 9 288V NPU (Lunar Lake)'): '仅 MLPerf Client Llama-2-7B 一条(未标位宽)',
+          ('Intel', 'Core Ultra 7 258V NPU (Lunar Lake)'): '仅规格,无可折算成绩', ('Intel', 'Core Ultra 5 125H NPU (Meteor Lake; ASUS Vivobook S16 OLED)'): '社区零散数字,硬件口径不明',
+          ('Huawei Ascend', 'Ascend 910B (TP4, 4 cards)'): '仅多卡大模型服务实测', ('Huawei Ascend', 'Ascend 910B4'): '仅大模型服务实测',
+          ('Huawei Ascend', 'Ascend 310P3'): '成绩为 FP32 输入 om 模型,批大小多为未标/大批;仅有「宽口径」参考值,未计入综合分',
+          ('Qualcomm', 'Snapdragon X Plus X1P-42-100 (Hexagon NPU)'): '仅社区零散数字'}
+
+KIND = {'Qualcomm': '手机/PC SoC', 'Apple': '手机/PC SoC', 'Intel': '手机/PC SoC', 'Hailo': 'PCIe/M.2 加速器', 'Google Coral': 'PCIe/USB 加速器',
+        'Huawei Ascend': '边缘/服务器加速卡', 'Cambricon': '服务器加速卡', 'Sophgo': '边缘 SoC/加速卡'}
+def pct(vals):
+    srt = sorted(vals, reverse=True)
+    n = len(srt)
+    return lambda x: 100.0 if n == 1 else 100.0 * (n - 1 - srt.index(x)) / (n - 1)
+p_cnn = pct([e['hmed'] if e['hmed'] is not None else e['med'] for e in cnn_d.values()])
+p_tr = pct([e['hmed'] if e['hmed'] is not None else e['med'] for e in tr_d.values()])
+p_llm = pct([v[0] for v in llm_d.values()])
+
+
+# ---------- wide-scope fallback: any batch / any precision (fps rows only), best matched model ----------
+wide = {}
+for f in sorted(glob.glob('data/*.csv')):
+    b = os.path.basename(f)
+    if b.startswith('specs_') or b in ('chip_specs.csv', 'apple.csv'): continue
+    for r in csv.DictReader(open(f)):
+        if r['metric'] != 'fps': continue
+        n = r['notes'].lower()
+        if any(w in n for w in ('end-to-end', 'pipeline', 'concurrent', 'outlier', 'synthetic')): continue
+        if r['vendor'] == 'Sophgo':
+            mn = sophgo_model(r['model'])
+            if not mn: continue
+            r = dict(r, model=mn[0], input_size=r['input_size'] or mn[1])
+        m = match_ops(r['model'], edge(r['input_size']))
+        v = num(r['value'])
+        if not m or not v: continue
+        k = (vnorm(r['vendor']), norm_chip(r['chip']))
+        eff = v * float(m['gops']) / 1000
+        s = spec_for(*k); peak = num(s.get('npu_tops_int8'))
+        if peak and eff > 1.3 * peak: continue
+        if k not in wide or eff > wide[k][0]: wide[k] = (eff, m['model'], r['precision'] or '未标', re.findall(r'batch[ =_:]*(\d+)', n))
+
+M = []
+for (v, c) in sorted(allchips):
+    s = spec_for(v, c) or spec_for(v, c.split(' (')[0])
+    peak = num(s.get('npu_tops_int8')); bw = num(s.get('mem_bandwidth_gbps'))
+    e1, e2, e3 = cnn_d.get((v, c)), tr_d.get((v, c)), llm_d.get((v, c))
+    c1 = (e1['hmed'] if e1['hmed'] is not None else e1['med']) if e1 else None
+    c2 = (e2['hmed'] if e2['hmed'] is not None else e2['med']) if e2 else None
+    c3 = e3[0] if e3 else None
+    sc = [p_cnn(c1) if c1 is not None else None, p_tr(c2) if c2 is not None else None, p_llm(c3) if c3 is not None else None]
+    have = [x for x in sc if x is not None]
+    M.append(dict(wide=wide.get((v, c)), v=v, c=c, kind=KIND.get(v, '边缘 SoC/NPU'), peak=peak, bw=bw, c1=c1, c2=c2, c3=c3, sc=sc,
+                  score=(sum(have) / len(have)) if have else None, nm=len(have),
+                  util=(c1 / peak if (c1 and peak) else None), bwu=(c3 / bw if (c3 and bw) else None)))
+M.sort(key=lambda m: (-(m['score'] if m['score'] is not None else -1), m['v'], m['c']))
+f2 = lambda x, d=1: '' if x is None else f'{x:.{d}f}'
+T = ['# 全芯片总榜(一张表)\n',
+     '把数据集中出现的所有芯片放进同一张表。**综合分** = 该芯片在可得指标上的「全体百分位」平均(0–100;三项指标:CNN 等效算力、Transformer 视觉等效算力、LLM 解码等效内存吞吐);无数据的指标留空,不计入平均。',
+     '**覆盖**(C/T/L)表示三项指标哪几项有数据。只有 1 项指标的芯片综合分仅作参考(手机 SoC 常因只测了云端纯 NPU 延迟而排名靠前,与开发板口径不完全相同)。',
+     '各列含义:标称 TOPS = 厂商 INT8 标称;CNN/Transformer 等效 TOPS = 重模型(≥5 GOPs)中位的 FPS×GOPs;利用率 = CNN 等效/标称;LLM 等效 GB/s = tokens/s×权重字节;带宽利用率 = LLM 等效 GB/s ÷ 理论带宽。官方数据优先,无官方数据才用社区数据。\n',
+     '| 综合排名 | 厂商 | 芯片 | 类型 | 标称 INT8 TOPS | 带宽 GB/s | CNN 等效 TOPS | CNN 利用率 | Transformer 等效 TOPS | LLM 等效 GB/s | LLM 带宽利用率 | 覆盖 C/T/L | 综合分 | 宽口径最佳等效 TOPS(任意批大小/精度,参考) | 数据状态 |', '|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|']
+rk = 0
+for m in M:
+    if m['score'] is None: rank = '—'
+    else:
+        rk += 1; rank = str(rk)
+    cov = ''.join(('C' if m['sc'][0] is not None else '·', 'T' if m['sc'][1] is not None else '·', 'L' if m['sc'][2] is not None else '·'))
+    T.append(f'| {rank} | {m["v"]} | {m["c"]} | {m["kind"]} | {f2(m["peak"],1)} | {f2(m["bw"],1)} | {f2(m["c1"],2)} | {f"{m["util"]*100:.0f}%" if m["util"] else ""} | {f2(m["c2"],2)} | {f2(m["c3"],1)} | {f"{m["bwu"]*100:.0f}%" if m["bwu"] else ""} | {cov} | {f2(m["score"],0)} | {(f"{m['wide'][0]:.2f} ({m['wide'][1]}, 批{m['wide'][3][0] if m['wide'][3] else '?'})" if m['wide'] else '')} | {STATUS.get((m["v"], m["c"]), "无可折算数据" if m["score"] is None else "")} |')
+T += ['', '"—" 排名表示目前没有任何可折算的数据(例如缺批大小 1 的 INT8 记录、缺模型 GOPs、或只有 FP16/混合精度成绩)。该类芯片的原始成绩见各厂商 CSV。']
+open('RANKING_ALL.md', 'w').write('\n'.join(T))
+print(len(M), 'chips in master;', sum(1 for m in M if m['score'] is not None), 'ranked')

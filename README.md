@@ -103,3 +103,10 @@
 
 - `specs_m.csv`:按 位宽/8 × 数据率 推算(加载器 DDR 时钟为默认初始化频率,非芯片上限;DDR 双倍速率为假设,备注已标):RK3576 21.9(LPDDR5)/16.9(LPDDR4x)GB/s、RK3588 38.4(LPDDR5)/33.8(LPDDR4X)、RV1126B 10.7、RK1808 6.4、全志 A733 19.2(厂商页标称的芯片上限,LPDDR5-4800)、此芯 P1 88(板卡配置)。排名取每颗芯片的第一行(LPDDR5 配置),优先于早先的 Wikipedia/板卡估算(RK3576 19.2 与 22、RK3588 34.1 与 44)。
 - 厂商均未直接给出 GB/s;RK3562、RK3566/68、RV1126、T527、V853、Coral、Apple A18 Pro、Core Ultra 7 155H 仍只有内存类型。Huawei 昇腾官网(e.huawei.com、hiascend.com)不可达。
+
+## 全芯片总榜(`RANKING_ALL.md`)
+
+- 由 `rank3.py` 一并生成:把数据集中**所有芯片放进同一张表**(44 颗,其中 31 颗有综合排名)。列:类型、标称 INT8 TOPS、带宽、CNN/Transformer 等效 TOPS、CNN 利用率、LLM 等效内存吞吐与带宽利用率、覆盖指标(C/T/L)、综合分、宽口径参考值、数据状态。
+- **综合分** = 该芯片在其可得指标(CNN、Transformer 视觉、LLM 解码)上的全体百分位平均(0–100);缺失指标不计入平均。仅 1 项指标的芯片综合分只作参考。
+- 无综合排名的 13 颗芯片(昇腾 310/910、寒武纪、Intel、Apple、Cix、RDK X3、AX650 等)在表底列出,并写明原因;昇腾 310P3/310B1 另给「宽口径」参考(任意批大小/精度)。
+- Sophgo 的 sophon-demo 成绩现按 bmodel 文件名解析为 YOLOv5s/YOLOv8/YOLOv7/YOLOX/ResNet50 等并折算(假设 YOLO 输入 640、ResNet50 输入 224,未在来源标注)。
