@@ -110,3 +110,9 @@
 - **综合分** = 该芯片在其可得指标(CNN、Transformer 视觉、LLM 解码)上的全体百分位平均(0–100);缺失指标不计入平均。仅 1 项指标的芯片综合分只作参考。
 - 无综合排名的 13 颗芯片(昇腾 310/910、寒武纪、Intel、Apple、Cix、RDK X3、AX650 等)在表底列出,并写明原因;昇腾 310P3/310B1 另给「宽口径」参考(任意批大小/精度)。
 - Sophgo 的 sophon-demo 成绩现按 bmodel 文件名解析为 YOLOv5s/YOLOv8/YOLOv7/YOLOX/ResNet50 等并折算(假设 YOLO 输入 640、ResNet50 输入 224,未在来源标注)。
+
+## 同一套模型总榜(`rank4.py` → `RANKING_COMMON_SUITE.md`)
+
+- 所有芯片在**同一批基准模型**(YOLOv5s / YOLOv8n / YOLOv8s @640,ResNet50 / MobileNetV2 @224)上直接比 FPS,综合分为各模型 FPS 百分位的平均;INT8 类精度、批大小 1、仅 NPU 推理;30 颗芯片均有综合分,只测过 1 个模型的(RDK X5、Coral)排在后面并标「单模型」。
+- Hailo 取自官方 Model Zoo 表(批 1);其 ResNet50 为自家变体 resnet_v1_50(6.98 GOPs)。Sophgo 的输入尺寸为假设值(YOLO 640、ResNet50 224)。
+- 与 `RANKING_ALL.md` 的区别:后者按「等效算力/带宽」折算且各芯片模型集合不同,前者统一模型、不折算。
